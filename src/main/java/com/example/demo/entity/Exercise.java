@@ -1,27 +1,32 @@
 package com.example.demo.entity;
 
-import javax.xml.crypto.Data;
+import java.sql.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "exercise_records")
-public class exercise {
+public class Exercise {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer user_id;
 	private double burn_calorie;
 	private Integer event_id;
 	private Integer time;
-	private Data date;
+	private Date date;
 	private Integer progress;
 	private String memo;
 
-	public exercise() {
+	public Exercise() {
 
 	}
 
-	public exercise(Integer user_id, double burn_calorie, Integer event_id, Integer time, Data date, Integer progress,
+	public Exercise(Integer user_id, double burn_calorie, Integer event_id, Integer time, Date date, Integer progress,
 			String memo) {
 		this.user_id = user_id;
 		this.burn_calorie = burn_calorie;
@@ -71,11 +76,11 @@ public class exercise {
 		this.time = time;
 	}
 
-	public Data getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Data date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

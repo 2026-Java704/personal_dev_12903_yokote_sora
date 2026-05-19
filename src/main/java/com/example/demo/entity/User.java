@@ -1,22 +1,33 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class user {
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	private String email;
 	private String password;
 	private Integer age;
 	private Integer gender;
 	private double weight;
 
-	public user() {
+	public User() {
 	}
 
-	public user(String name, String password, Integer age, Integer gender, double weight) {
+	public User(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+
+	public User(String name, String password, Integer age, Integer gender, double weight) {
 		this.name = name;
 		this.password = password;
 		this.age = age;
@@ -38,6 +49,14 @@ public class user {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
