@@ -10,6 +10,7 @@
 	<form>
 		<form action="/login" method="post">
 		こんにちは[[${@account.name}]]さん
+		<span th:text="${message}" style="color: red"></span>
 		<table border="1">
 			<tr>
 				<th>日付</th>

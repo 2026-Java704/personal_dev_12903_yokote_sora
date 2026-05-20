@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS events CASCADE;
+DROP TABLE IF EXISTS exercise_records CASCADE;
+
+
 -- ユーザーテーブル
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
