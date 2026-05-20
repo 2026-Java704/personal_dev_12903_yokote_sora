@@ -7,33 +7,32 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
-	private String email;
 	private String password;
-	private Integer age;
-	private Integer gender;
-	private double weight;
+	//	private Integer age;
+	//	private Integer gender;
+	//	private double weight;
 
 	public User() {
 	}
 
-	public User(String email, String password) {
-		this.email = email;
+	public User(String name, String password) {
+		this.name = name;
 		this.password = password;
 	}
 
-	public User(String name, String password, Integer age, Integer gender, double weight) {
-		this.name = name;
-		this.password = password;
-		this.age = age;
-		this.gender = gender;
-		this.weight = weight;
-	}
+	//	public User(String name, String password, Integer age, Integer gender, double weight) {
+	//		this.name = name;
+	//		this.password = password;
+	//		//		this.age = age;
+	//		//		this.gender = gender;
+	//		//		this.weight = weight;
+	//	}
 
 	public Integer getId() {
 		return id;
@@ -51,15 +50,7 @@ public class User {
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
+	String getPassword() {
 		return password;
 	}
 
@@ -67,28 +58,28 @@ public class User {
 		this.password = password;
 	}
 
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public Integer getGender() {
-		return gender;
-	}
-
-	public void setGender(Integer gender) {
-		this.gender = gender;
-	}
-
-	public double getWeight() {
-		return weight;
-	}
-
-	public void setWeight(double weight) {
-		this.weight = weight;
-	}
+	//	public Integer getAge() {
+	//		return age;
+	//	}
+	//
+	//	public void setAge(Integer age) {
+	//		this.age = age;
+	//	}
+	//
+	//	public Integer getGender() {
+	//		return gender;
+	//	}
+	//
+	//	public void setGender(Integer gender) {
+	//		this.gender = gender;
+	//	}
+	//
+	//	public double getWeight() {
+	//		return weight;
+	//	}
+	//
+	//	public void setWeight(double weight) {
+	//		this.weight = weight;
+	//	}
 
 }
