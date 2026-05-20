@@ -20,10 +20,17 @@ public class Exercise {
 	private Integer time;
 	private Date date;
 	private Integer progress;
+	private Integer weight;
 	private String memo;
 
 	public Exercise() {
 
+	}
+
+	public Exercise(Integer time, Date date, Integer weight) {
+		this.time = time;
+		this.date = date;
+		this.weight = weight;
 	}
 
 	public Exercise(Integer user_id, double burn_calorie, Integer event_id, Integer time, Date date, Integer progress,
@@ -90,6 +97,14 @@ public class Exercise {
 
 	public void setProgress(Integer progress) {
 		this.progress = progress;
+	}
+
+	public Integer getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Integer weight) {
+		this.weight = weight;
 	}
 
 	public String getMemo() {

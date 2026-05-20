@@ -5,7 +5,6 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     age INTEGER,
     gender INTEGER,
-    weight INTEGER
 );
 
 -- 運動種目テーブル
@@ -24,6 +23,7 @@ CREATE TABLE exercise_records (
     event_id INTEGER NOT NULL,
     date DATE NOT NULL,
     time INTEGER NOT NULL,
+    weight INTEGER NOT NULL,
     burn_calorie INTEGER NOT NULL,
     memo TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id),

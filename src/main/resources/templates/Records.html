@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>記録入力ページ</title>
+	<meta charset="UTF-8">
+	<title>記録入力ページ</title>
 </head>
-<form>
-	<form action="/login" method="post"></form>
-こんにちは[[${@account.name}]]さん
-<table>
-	<tr>
-		
-	</tr>
-</table>
-</form>
+
+<body>
+	<form>
+		<form action="/login" method="post">
+		こんにちは[[${@account.name}]]さん
+		<table border="1">
+			<tr>
+				<th>日付</th>
+				<th>種目</th>
+				<th>時間</th>
+				<th>体重</th>
+			</tr>
+			<tr>
+				<td>
+					<input type="date" name="Date">
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					<input type="time" name="time">
+				</td>
+				<td>
+					<input type="number" name="weight">
+				</td>
+			</tr>
+		</table>
+		<button>ENTER!!!</button>
+	</form>
 </body>
+
 </html>

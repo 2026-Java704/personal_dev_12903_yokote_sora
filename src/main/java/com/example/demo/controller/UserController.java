@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
@@ -52,9 +53,8 @@ public class UserController {
 			model.addAttribute("message", "名前とパスワードが一致しませんでした");
 			return "login";
 		}
-
 		account.setName(name);
-		return "/Records";
+		return "redirect:/records/add";
 	}
 
 	//新規会員登録画面表示
@@ -69,22 +69,21 @@ public class UserController {
 			@RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") String password,
 			Model model) {
-		//		List<String> errorList = new ArrayList<>();
-		//		if ("".equals(name)) {
-		//			errorList.add("名前は必須です");
-		//		}
-		//		if ("".equals(password)) {
-		//			errorList.add("パスワードは必須です");
-		//		}
-		//		if (errorList.size() > 0) {
-		//			model.addAttribute("errorList", errorList);
-		//			model.addAttribute("name", name);
-		//			model.addAttribute(password);
-		//			return "userForm";
-		//		}
+		List<String> errorList = new ArrayList<>();
+		if ("".equals(name)) {
+			errorList.add("名前は必須です");
+		}
+		if ("".equals(password)) {
+			errorList.add("パスワードは必須です");
+		}
+		if (errorList.size() > 0) {
+			model.addAttribute("errorList", errorList);
+			model.addAttribute("name", name);
+			model.addAttribute(password);
+			return "/login";
+		}
 		User user = new User(name, password);
 		usersRepository.save(user);
 		return "redirect:/login";
-
 	}
 }
