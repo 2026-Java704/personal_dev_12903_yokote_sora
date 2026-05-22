@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>記録更新画面表示</title>
+</head>
+
+<body>
+	<h3><span th:text="${@account.name} + ' さん、こんにちは'"></span></h3>
+	<table border="1">
+		<tr>
+			<th>日付</th>
+			<th>種目</th>
+			<th>時間</th>
+			<th>体重</th>
+			<th>消費カロリー</th>
+			<th>更新</th>
+		</tr>
+
+		<tr th:each="record : ${records}">
+			<td th:text="${record.date}"></td>
+			<td th:text="${record.eventId}"></td>
+			<td th:text="${record.time}"></td>
+			<td th:text="${record.weight}"></td>
+			<td th:text="${record.burnCalorie}"></td>
+			<td>
+				<form th:action="@{/past/{id}/edit(id=${record.id})}" method="get">
+					<button>更新</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<span th:text="${#aggregates.sum(records.![burnCalorie])}">
+	</span>
+
+	<p><a href="/records/add">入力画面へ戻る</a></p>
+	<form action="/logout" method="post">
+		<button type="submit">ログアウト</button>
+	</form>
+</body>
+
+</html>

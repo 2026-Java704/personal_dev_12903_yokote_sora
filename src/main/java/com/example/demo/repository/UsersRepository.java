@@ -9,4 +9,6 @@ import com.example.demo.entity.User;
 public interface UsersRepository extends JpaRepository<User, Integer> {
 
 	List<User> findByNameAndPassword(String name, String password);
+
+	boolean existsByName(String trimmedName);
 }

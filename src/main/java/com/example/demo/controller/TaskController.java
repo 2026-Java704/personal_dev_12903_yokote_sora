@@ -1,63 +1,150 @@
 package com.example.demo.controller;
 
-import java.sql.Date;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.entity.Exercise;
-import com.example.demo.repository.ExerciseRepository;
+import com.example.demo.entity.Events;
+import com.example.demo.entity.Exercise_records;
+import com.example.demo.model.Account;
+import com.example.demo.repository.EventsRepository;
+import com.example.demo.repository.Exercise_recordsRepository;
 
 @Controller
 public class TaskController {
-	ExerciseRepository exerciseRepository;
 
-	public TaskController(ExerciseRepository exersiseReposiory) {
-		this.exerciseRepository = exerciseRepository;
+	private final Account account;
+	private final Exercise_recordsRepository exerciseRecordsRepository;
+	private final EventsRepository eventsRepository;
+
+	public TaskController(Account account, Exercise_recordsRepository exerciseRecordsRepository,
+			EventsRepository eventsRepository) {
+		this.account = account;
+		this.exerciseRecordsRepository = exerciseRecordsRepository;
+		this.eventsRepository = eventsRepository;
 	}
 
-	//入力フォーム表示
+	//記録入力フォーム
 	@GetMapping("/records/add")
-	public String index() {
-		return "Records";
+	public String records(Model model) {
+		if (account.getId() == null) {
+			return "redirect:/login";
+		}
+		List<Events> eventsList = eventsRepository.findByUserIdOrderByIdAsc(account.getId());
+		model.addAttribute("events", eventsList);
+		return "records";
 	}
 
-	//入力処理
-	@PostMapping("/past")
+	//記録計算処理
+	@PostMapping("/records/add")
 	public String enter(
-			@RequestParam Date date,
-			@RequestParam String name,
+			@RequestParam LocalDate date,
+			@RequestParam Integer eventId,
 			@RequestParam Integer time,
-			@RequestParam Integer weight,
-			@RequestParam Integer mets,
+			@RequestParam Double weight,
+			@RequestParam(required = false, defaultValue = "") String memo,
 			Model model) {
-		List<String> errorList = new ArrayList<>();
-		if (time == null) {
-			errorList.add("時間は必須です");
-		}
-		if (weight == null) {
-			errorList.add("体重は必須です");
+		if (account.getId() == null) {
+			return "redirect:/login";
 		}
 
-		if (errorList.size() > 0) {
-			model.addAttribute("errorList", errorList);
-			model.addAttribute("time", time);
-			model.addAttribute("weight", weight);
-			return "/Records";
+		List<Events> eventsList = eventsRepository.findByUserIdOrderByIdAsc(account.getId());
+		Events event = null;
+		for (int i = 0; i < eventsList.size(); i++) {
+			Events oneEvent = eventsList.get(i);
+			if (oneEvent.getId().equals(eventId)) {
+				event = oneEvent;
+			}
 		}
-		Exercise exercise = new Exercise(time, date, weight);
-		exerciseRepository.save(exercise);
 
-		return null;
+		if (date == null || time == null || weight == null || event == null) {
+			model.addAttribute("message", "種目を選択してください");
+			model.addAttribute("events", eventsList);
+			return "records";
+		}
+
+		double burnCalorie = event.getMets() * weight * (time / 60.0) * 1.05;
+		Exercise_records record = new Exercise_records(
+				account.getId(),
+				eventId,
+				date,
+				time,
+				weight,
+				Math.round(burnCalorie * 10.0) / 10.0,
+				2,
+				memo.trim());
+		exerciseRecordsRepository.save(record);
+		model.addAttribute("record", record);
+		model.addAttribute("eventName", event.getName());
+		return "output";
 	}
 
-	@GetMapping("/memory")
-	public String memoty() {
-		return "";
+	//過去記録画面表示
+	@GetMapping("/past")
+	public String past(
+			Model model) {
+		if (account.getId() == null) {
+			return "redirect:/login";
+		}
+
+		List<Events> events = eventsRepository.findByUserIdOrderByIdAsc(account.getId());
+		List<Exercise_records> records = exerciseRecordsRepository.findByUserIdOrderByDateDescIdDesc(account.getId());
+		model.addAttribute("events", events);
+		model.addAttribute("records", records);
+
+		return "past";
+	}
+
+	//更新画面表示
+	@GetMapping("/past/{id}/edit")
+	public String edit(@PathVariable Integer id, Model model) {
+
+		if (account.getId() == null) {
+			return "redirect:/login";
+		}
+
+		List<Events> events = eventsRepository.findByUserIdOrderByIdAsc(account.getId());
+		model.addAttribute("events", events);
+
+		Exercise_records exercise_records = exerciseRecordsRepository.findById(id).get();
+		model.addAttribute("exercise_records", exercise_records);
+
+		// これを追加
+		model.addAttribute("id", id);
+
+		return "editPast";
+	}
+
+	// 更新処理
+	@PostMapping("/past/{id}/edit")
+	public String update(
+			@PathVariable Integer id,
+			@RequestParam Integer eventId,
+			@RequestParam LocalDate date,
+			@RequestParam Integer time,
+			@RequestParam Double weight) {
+
+		Exercise_records exercise_records = exerciseRecordsRepository.findById(id).get();
+
+		Events event = eventsRepository.findById(eventId).get();
+
+		double burnCalorie = event.getMets() * weight * (time / 60.0) * 1.05;
+		double roundedCalorie = Math.round(burnCalorie * 10.0) / 10.0;
+
+		exercise_records.setEventId(eventId);
+		exercise_records.setDate(date);
+		exercise_records.setTime(time);
+		exercise_records.setWeight(weight);
+		exercise_records.setBurnCalorie(roundedCalorie);
+
+		exerciseRecordsRepository.save(exercise_records);
+
+		return "redirect:/past";
 	}
 }

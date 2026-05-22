@@ -14,9 +14,6 @@ public class User {
 	private Integer id;
 	private String name;
 	private String password;
-	//	private Integer age;
-	//	private Integer gender;
-	//	private double weight;
 
 	public User() {
 	}
@@ -25,14 +22,6 @@ public class User {
 		this.name = name;
 		this.password = password;
 	}
-
-	//	public User(String name, String password, Integer age, Integer gender, double weight) {
-	//		this.name = name;
-	//		this.password = password;
-	//		//		this.age = age;
-	//		//		this.gender = gender;
-	//		//		this.weight = weight;
-	//	}
 
 	public Integer getId() {
 		return id;
@@ -57,29 +46,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	//	public Integer getAge() {
-	//		return age;
-	//	}
-	//
-	//	public void setAge(Integer age) {
-	//		this.age = age;
-	//	}
-	//
-	//	public Integer getGender() {
-	//		return gender;
-	//	}
-	//
-	//	public void setGender(Integer gender) {
-	//		this.gender = gender;
-	//	}
-	//
-	//	public double getWeight() {
-	//		return weight;
-	//	}
-	//
-	//	public void setWeight(double weight) {
-	//		this.weight = weight;
-	//	}
 
 }

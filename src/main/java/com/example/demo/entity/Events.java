@@ -16,7 +16,7 @@ public class Events {
 	@Column(name = "user_id")
 	private Integer userId;
 	private String name;
-	private Integer mets;
+	private double mets;
 
 	public Events() {
 	}
@@ -50,11 +50,11 @@ public class Events {
 		this.name = name;
 	}
 
-	public Integer getMets() {
+	public double getMets() {
 		return mets;
 	}
 
-	public void setMets(Integer mets) {
+	public void setMets(double mets) {
 		this.mets = mets;
 	}
 
