@@ -4,9 +4,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>記録の編集</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
+	<header th:replace="~{header}"></header>
 	<main>
 		<form th:action="@{/past/{pastId}/edit(pastId=${exercise_records.id})}" method="post">
 			<table border="1">
@@ -43,6 +45,7 @@
 			<button type="submit">更新する</button>
 		</form>
 	</main>
+	<footer th:replace="~{footer}"></footer>
 </body>
 
 </html>

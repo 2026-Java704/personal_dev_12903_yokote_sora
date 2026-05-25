@@ -4,18 +4,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>記録入力ページ</title>
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-	<header>
-		<h1>縄跳びダイエットアプリ</h1>
-	</header>
-
+	<header th:replace="~{header}"></header>
 	<main>
-		<hr>
+		
 		<h3><span th:text="${@account.name} + ' さん、こんにちは'"></span></h3>
 		<form action="/logout" method="post">
-			<button type="submit">ログアウト</button>
+			<button type="submit" class="button1">ログアウト</button>
 		</form>
 		<form action="/records/add" method="post">
 			<table border="1">
@@ -29,19 +27,20 @@
 				<tr>
 					<td><input type="date" name="date" required></td>
 					<td>
-						<select name="eventId">
-							<option th:each="event : ${events}" th:value="${event.id}" th:text="${event.name}"></option>
+						<select name="eventId" >
+							<option th:each="event : ${events}" th:value="${event.id}" th:text="${event.name}" required></option>
 						</select>
 					</td>
-					<td><input type="number" name="time" min="1" required> 分</td>
-					<td><input type="number" name="weight" min="1" step="0.1" required> kg</td>
+					<td><input type="number" name="time" max="9999" minlength="1" required> 分</td>
+					<td><input type="number" name="weight" step="0.1" minlength="1" max="999" required> kg</td>
 					<td><input type="text" name="memo"></td>
 				</tr>
 			</table>
-			<button>ENTER!!!</button>
+			<button class="button2">ENTER!!!</button>
 		</form>
-		<p><a href="/past">過去の記録を見る</a></p>
+		<a href="/past" class="link1">過去の記録を見る</a>
 	</main>
+	<footer th:replace="~{footer}"></footer>
 </body>
 
 </html>

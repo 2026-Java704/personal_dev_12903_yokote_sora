@@ -90,11 +90,26 @@ public class TaskController {
 	public String past(
 			Model model) {
 		if (account.getId() == null) {
+
 			return "redirect:/login";
 		}
 
 		List<Events> events = eventsRepository.findByUserIdOrderByIdAsc(account.getId());
 		List<Exercise_records> records = exerciseRecordsRepository.findByUserIdOrderByDateDescIdDesc(account.getId());
+		double totalCalorie = 0.0;
+		for (Exercise_records record : records) {
+			if (record.getBurnCalorie() != null) {
+				totalCalorie += record.getBurnCalorie();
+			}
+		}
+		double averageCalorie = 0.0;
+		for (Exercise_records record : records) {
+			if (record.getBurnCalorie() != null) {
+				averageCalorie += record.getBurnCalorie();
+			}
+		}
+		double roundedTotal = Math.round(totalCalorie * 10.0) / 10.0;
+		model.addAttribute("totalCalorie", roundedTotal);
 		model.addAttribute("events", events);
 		model.addAttribute("records", records);
 
