@@ -11,7 +11,7 @@
 	<header th:replace="~{header}"></header>
 	<h3><span th:text="${@account.name} + ' さん、こんにちは'"></span></h3>
 	<main>
-		<table border="1">
+		<table th:if="${!records.isEmpty()}">
 			<tr>
 				<th>日付</th>
 				<th>種目</th>

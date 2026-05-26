@@ -6,10 +6,7 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<header class="header">
-		<h1>健康ダイエットアプリ</h1>
-	</header>
-
+	<h1 class="header">健康ダイエットアプリ</h1>
 	<main>
 		<h3>新規登録</h3>
 		<form action="/users/add" method="post">
@@ -28,7 +25,9 @@
 			</table><br>
 			<button class="adduser">登録</button>
 		</form>
+		<table>
 		<p><a href="/login">ログイン画面へ戻る</a></p>
+		</table>
 	</main>
 	<footer th:replace="~{footer}"></footer>
 </body>

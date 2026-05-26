@@ -10,4 +10,6 @@ public interface Exercise_recordsRepository extends JpaRepository<Exercise_recor
 
 	List<Exercise_records> findByUserIdOrderByDateDescIdDesc(Integer id);
 
+	List<Exercise_records> findByUserIdOrderByDateAsc(Integer userId);
+
 }

@@ -35,14 +35,13 @@
 					<td><input type="number" name="weight" min="1" step="0.1" th:value="${exercise_records.weight}"
 							required> kg</td>
 				</tr>
-
 				<tr>
 					<th>消費カロリー</th>
 					<td><input type="text" th:value="${exercise_records.burnCalorie}" readonly> kcal</td>
 				</tr>
 			</table>
 			<br>
-			<button type="submit">更新する</button>
+			<button class="button3" type="submit">更新する</button>
 		</form>
 	</main>
 	<footer th:replace="~{footer}"></footer>

@@ -8,15 +8,12 @@
 </head>
 
 <body>
-	<header th:replace="~{header}"></header>
+	<header th:replace="~{header}" class="header"></header>
 	<main>
 		
 		<h3><span th:text="${@account.name} + ' さん、こんにちは'"></span></h3>
-		<form action="/logout" method="post">
-			<button type="submit" class="button1">ログアウト</button>
-		</form>
 		<form action="/records/add" method="post">
-			<table border="1">
+			<table class="table">
 				<tr>
 					<th>日付</th>
 					<th>種目</th>
@@ -36,7 +33,7 @@
 					<td><input type="text" name="memo"></td>
 				</tr>
 			</table>
-			<button class="button2">ENTER!!!</button>
+			<button class="button1">ENTER!!!</button>
 		</form>
 		<a href="/past" class="link1">過去の記録を見る</a>
 	</main>
