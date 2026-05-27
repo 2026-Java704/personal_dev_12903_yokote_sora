@@ -11,7 +11,7 @@
 	<header th:replace="~{header}"></header>
 	<h3><span th:text="${@account.name} + ' さん、こんにちは'"></span></h3>
 	<main>
-		<table th:if="${!records.isEmpty()}">
+		<table th:if="${!records.isEmpty()}" border="1">
 			<tr>
 				<th>日付</th>
 				<th>種目</th>
@@ -20,18 +20,24 @@
 				<th>消費カロリー</th>
 				<th>メモ</th>
 				<th>更新</th>
+				<th>削除</th>
 			</tr>
 
 			<tr th:each="record : ${records}">
 				<td th:text="${record.date}"></td>
 				<td th:text="${record.eventId}"></td>
-				<td th:text="${record.time}"></td>
-				<td th:text="${record.weight}"></td>
-				<td th:text="${record.burnCalorie}"></td>
+				<td th:text="${record.time}">分</td>
+				<td th:text="${record.weight}">㎏</td>
+				<td th:text="${record.burnCalorie}">㎘</td>
 				<td th:text="${record.memo}"></td>
 				<td>
 					<form th:action="@{/past/{id}/edit(id=${record.id})}" method="get">
-						<button>更新</button>
+						<button class="button3">更新</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/past/{id}/delete(id=${record.id})}" method="post" style="margin: 0;">
+						<button class="button4" onclick="return confirm('本当に削除しますか？')">削除</button>
 					</form>
 				</td>
 			</tr>
@@ -44,9 +50,6 @@
 			</span>キロカロリー消費しました！
 		</h3>
 		<p><a href="/records/add">入力画面へ戻る</a></p>
-		<form action="/logout" method="post">
-			<button type="submit">ログアウト</button>
-		</form>
 	</main>
 	<footer th:replace="~{footer}"></footer>
 </body>

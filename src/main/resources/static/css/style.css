@@ -34,7 +34,7 @@ header{
 }
 .header{
 	background: linear-gradient(rgb(36, 36, 36),rgb(240, 240, 240));
-	font-size: 1em;
+	font-size: 3em;
 	margin: 0;
 	padding-top: 80px;
 	text-align: center;
@@ -73,14 +73,18 @@ a, nav a {
 			color: #fff;
 			top: 0%;
 }
-
 /* 仕切り線 */
 hr {
 	border-top: 2px dashed rgb(128, 128, 128);
 }
 h3,h4{
+	color: white;
 	margin: auto;
 	padding: 3px;
+	text-shadow:1px 1px 0 rgb(0, 0, 0), -1px -1px 0 rgb(0, 0, 0),
+				              -1px 1px 0 rgb(0, 0, 0), 1px -1px 0 rgb(0, 0, 0),
+				              0px 1px 0 rgb(0, 0, 0),  0-1px 0 rgb(0, 0, 0),
+				              -1px 0 0 rgb(0, 0, 0), 1px 0 0 rgb(0, 0, 0);
 }
 /* メイン */
 main {
@@ -88,12 +92,14 @@ main {
 	background-color: #FFFFFF;
 	min-height: 10px;
 	padding: 1rem 1rem 1rem 1rem ;
-	margin:1.5%;
+	margin:auto;
 	padding-top: 50px;
 	padding-bottom: 50px;
+	padding-left: 0.5%;
+	padding-right: 0.5%;
 }
 /* 表線 */
-table, th, td {
+table, th{
 	border-collapse: collapse;
 	border: 1px solid rgb(24, 24, 24);
 	padding: 2px 5px 2px 5px;
@@ -102,23 +108,39 @@ table, th, td {
 table {
 	background-color: #ffffff;
     margin: auto;
-    width: 30rem;
 	padding: 2px 5px 2px 5px;
 }
 .table{
 	border-collapse: collapse;
 		border: 1px solid rgb(24, 24, 24);
-		padding: 2px 10px 2px 10px;
-		
+		padding: 2px 10px 2px 10px;		
 }
 .table th {
 	background-color: rgb(24, 24, 24);
 		color: #ffffff;
 }
+.table td{
+	border-collapse: collapse;
+			border: 1px solid rgb(24, 24, 24);
+			padding: 2px 10px 2px 10px;
+			width: 200px;
+
+}
 /* 表見出しセル */
 table th {
 	background-color: rgb(24, 24, 24);
 	color: #ffffff;
+}
+.loginbutton{
+	background: linear-gradient(270deg, rgb(128, 255, 255), rgb(0, 128, 255), rgb(0, 255, 255));
+			  background-size: 200% 200%;
+			  color: rgb(255, 255, 255);
+			  border: none;
+			  padding: 0.5em 0.7em;
+			  font-size: 16px;
+			  border-radius: 50px;
+			  cursor: pointer;
+			  font-weight: 600;
 }
 /* 送信ボタン */
 .button1 {
@@ -146,6 +168,7 @@ table th {
 .button2:hover {
 	background-color: rgb(146, 146, 146);
 }
+
 .adduser{
 	background: linear-gradient(135deg, rgb(255, 204, 70) 0%, #f5576c 50%, rgb(255, 204, 70) 100%);
 	 color: white;
@@ -158,8 +181,8 @@ table th {
 	 transition: all 0.3s ease;
 	 box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
 }
-.loginbutton{
-	background: linear-gradient(270deg, rgb(222, 237, 41), rgb(244, 189, 0), rgb(222, 237, 41));
+.button3{
+	background: linear-gradient(270deg, rgb(128, 255, 0), rgb(0, 255, 64), rgb(128, 255, 128));
 	  background-size: 200% 200%;
 	  color: black;
 	  border: none;
@@ -171,8 +194,22 @@ table th {
 	  transition: all 0.3s ease;
 	  animation: gradientMove 3s ease infinite;
 }
-.loginbutton:hover{
-	background:linear-gradient(270deg, rgb(222, 237, 41), rgb(255, 204, 70), rgb(222, 237, 41)); ;
+.button3:hover{
+	background:linear-gradient(270deg, rgb(0, 255, 128), rgb(128, 255, 0), rgb(0, 255, 64)); ;
+}
+.button4{
+	background: linear-gradient(270deg, rgb(255, 128, 192), rgb(255, 0, 255), rgb(255, 128, 255));
+		  background-size: 200% 200%;
+		  color: black;
+		  border: none;
+		  padding: 0.5em 0.7em;
+		  font-size: 16px;
+		  border-radius: 50px;
+		  cursor: pointer;
+		  font-weight: 600;
+}
+.button4:hover{
+	background: linear-gradient(270deg, rgb(255, 157, 255), rgb(255, 128, 192), rgb(255, 128, 255));
 }
 .p1{
 	color: rgb(244, 189, 0);

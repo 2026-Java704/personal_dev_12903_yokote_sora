@@ -162,4 +162,14 @@ public class TaskController {
 
 		return "redirect:/past";
 	}
+
+	// 削除処理
+	@PostMapping("/past/{id}/delete")
+	public String delete(@PathVariable Integer id) {
+
+		// itemsテーブルから削除（DELETE）
+		exerciseRecordsRepository.deleteById(id);
+		// 「/items」にGETでリクエストし直す（リダイレクト）
+		return "redirect:/past";
+	}
 }
