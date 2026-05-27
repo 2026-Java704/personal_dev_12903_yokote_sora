@@ -45,10 +45,10 @@
 		<div th:if="${records.isEmpty()}">
 			<p>過去の記録がありません。</p>
 		</div>
-		<h3>>合計
+		<h2>>合計
 			<span th:text="${totalCalorie}">
 			</span>キロカロリー消費しました！
-		</h3>
+		</h2>
 		<p><a href="/records/add">入力画面へ戻る</a></p>
 	</main>
 	<footer th:replace="~{footer}"></footer>

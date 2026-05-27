@@ -102,12 +102,6 @@ public class TaskController {
 				totalCalorie += record.getBurnCalorie();
 			}
 		}
-		double averageCalorie = 0.0;
-		for (Exercise_records record : records) {
-			if (record.getBurnCalorie() != null) {
-				averageCalorie += record.getBurnCalorie();
-			}
-		}
 		double roundedTotal = Math.round(totalCalorie * 10.0) / 10.0;
 		model.addAttribute("totalCalorie", roundedTotal);
 		model.addAttribute("events", events);
@@ -143,7 +137,8 @@ public class TaskController {
 			@RequestParam Integer eventId,
 			@RequestParam LocalDate date,
 			@RequestParam Integer time,
-			@RequestParam Double weight) {
+			@RequestParam Double weight,
+			@RequestParam String memo) {
 
 		Exercise_records exercise_records = exerciseRecordsRepository.findById(id).get();
 
@@ -156,6 +151,7 @@ public class TaskController {
 		exercise_records.setDate(date);
 		exercise_records.setTime(time);
 		exercise_records.setWeight(weight);
+		exercise_records.setMemo(memo);
 		exercise_records.setBurnCalorie(roundedCalorie);
 
 		exerciseRecordsRepository.save(exercise_records);
